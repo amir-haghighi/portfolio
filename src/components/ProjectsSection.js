@@ -38,10 +38,9 @@ const ProjectsSection = () => {
       p={8}
       alignItems="flex-start"
       spacing={8}
+      id="projects-section"
     >
-      <Heading as="h1" id="projects-section">
-        Featured Projects
-      </Heading>
+      <Heading as="h1">Featured Projects</Heading>
       <Box
         display="grid"
         gridTemplateColumns="repeat(2,minmax(0,1fr))"

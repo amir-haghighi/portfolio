@@ -1,6 +1,5 @@
 import { useState } from "react";
-
-const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+import emailjs from "@emailjs/browser";
 
 /**
  * This is a custom hook that can be used to submit a form and simulate an API call
@@ -9,27 +8,35 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const useSubmit = () => {
   const [isLoading, setLoading] = useState(false);
   const [response, setResponse] = useState(null);
-
-  const submit = async (url, data) => {
-    const random = Math.random();
+  const submit = async (data, formRef) => {
     setLoading(true);
     try {
-      await wait(2000);
-      if (random < 0.5) {
-        throw new Error("Something went wrong");
-      }
-      setResponse({
-        type: "success",
-        message: `Thanks for your submission ${data.firstName}, we will get back to you shortly!`,
-      });
+      emailjs
+        .sendForm(
+          "service_6ltaoq9",
+          "template_ip42lrt",
+          formRef.current,
+          "U3kvLHAo1OPgqqaVi"
+        )
+        .then(
+          (result) => {
+            setResponse({
+              type: "success",
+              message: `Thanks for your submission ${data.firstName}, we will get back to you shortly!`,
+            });
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
     } catch (error) {
       setResponse({
         type: "error",
         message: "Something went wrong, please try again later!",
       });
-    } finally {
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   return { isLoading, response, submit };

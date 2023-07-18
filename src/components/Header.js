@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -7,33 +7,35 @@ import {
   faMedium,
   faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, HStack, useLatestRef } from "@chakra-ui/react";
 
 const socials = [
   {
     icon: faEnvelope,
-    url: "mailto: hello@example.com",
+    url: "mailto: hagh73h@gmail.com",
   },
   {
     icon: faGithub,
-    url: "https://github.com",
+    url: "https://github.com/amir-haghighi",
   },
   {
     icon: faLinkedin,
-    url: "https://www.linkedin.com",
+    url: "https://www.linkedin.com/in/hosein-haghighi",
   },
   {
     icon: faMedium,
-    url: "https://medium.com",
+    url: "https://medium.com/@hagh73h",
   },
   {
     icon: faStackOverflow,
-    url: "https://stackoverflow.com",
+    url: "https://stackoverflow.com/users/5578365/amir-haghighi",
   },
 ];
 
 const Header = () => {
-  const ref = useRef(null);
+  const [firstRender, setfirstRender] = useState(true);
+  const BoxRef = useRef(null);
+  const savingRef = useRef(null);
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
@@ -44,30 +46,30 @@ const Header = () => {
       });
     }
   };
-  useEffect(() => {
-    let prevScroll = window.scrollY;
-    const BOX = ref.current;
-    const handleScroll = () => {
-      let currentScroll = window.scrollY;
-      if (!BOX) return;
-      if (prevScroll > currentScroll) {
-        // user has scrolled up
+  useLayoutEffect(() => {
+    let prevScrollPos = window.scrollY;
 
-        BOX.style.transform = "translateY(0)";
-      } else {
-        // user has scrolled down
-        BOX.style.transform = "translateY(-200px)";
-      }
+    // Handle scroll events
+    const handleScroll = () => {
+      const currScrollPos = window.scrollY;
+      const BOX = BoxRef.current;
+
+      if (!BOX) return;
+
+      if (prevScrollPos > currScrollPos) BOX.style.transform = "translateY(0)";
+      else BOX.style.transform = "translateY(-200px)";
+
+      prevScrollPos = currScrollPos;
     };
-    // update previous scroll position
+
     // Set up listeners for the scroll event
     window.addEventListener("scroll", handleScroll);
+
     // Remove listeners for the scroll event
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [window.scrollY]);
-
+  }, []);
   return (
     <nav>
       <Box
@@ -75,7 +77,7 @@ const Header = () => {
         top={0}
         left={0}
         right={0}
-        ref={ref}
+        ref={BoxRef}
         transitionProperty="transform"
         transitionDuration=".3s"
         transitionTimingFunction="ease-in-out"

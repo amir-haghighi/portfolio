@@ -19,6 +19,7 @@ import { useAlertContext } from "../context/alertContext";
 import Alert from "./Alert";
 
 const LandingSection = () => {
+  const formRef = useRef(null);
   const buttonRef = useRef(null);
   const { isLoading, response, submit } = useSubmit();
   const { onOpen } = useAlertContext();
@@ -28,11 +29,10 @@ const LandingSection = () => {
         firstName: "",
         email: "",
         type: "hireMe" | "openSource" | "other",
-        comment:
-          "A message from the user This message should be more than 25 chracters",
+        comment: "Message me",
       },
       onSubmit: () => {
-        submit("", values);
+        submit(values, formRef);
       },
       validationSchema: Yup.object({
         firstName: Yup.string().required("Required"),
@@ -40,7 +40,7 @@ const LandingSection = () => {
         type: Yup.string().optional(),
         comment: Yup.string()
           .required("Required")
-          .min(25, "Must be at least 25 characters"),
+          .min(5, "Must be at least 5 characters"),
       }),
     });
   // Show an alert when the form is submitted successfully
@@ -59,16 +59,17 @@ const LandingSection = () => {
       spacing={8}
     >
       <Alert />
-      <VStack w="1024px" p={32} alignItems="flex-start">
-        <Heading as="h1" id="contactme-section">
-          Contact me
-        </Heading>
+
+      <VStack w="1024px" p={32} alignItems="flex-start" id="contactme-section">
+        <Heading as="h1">Contact me</Heading>
         <Box p={6} rounded="md" w="100%">
           <form
+            ref={formRef}
             onSubmit={(e) => {
               e.preventDefault();
               handleSubmit();
             }}
+            className="input-white "
           >
             <VStack spacing={4}>
               <FormControl isInvalid={touched.firstName && errors.firstName}>
