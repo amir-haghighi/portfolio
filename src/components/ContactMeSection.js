@@ -51,6 +51,7 @@ const LandingSection = () => {
       if (response.type === "success") resetForm();
     }
   }, [response]);
+  let { value: placeholder, ...restOfCommentsProps } = getFieldProps("comment");
   return (
     <FullScreenSection
       isDarkBackground
@@ -112,7 +113,8 @@ const LandingSection = () => {
                   id="comment"
                   name="comment"
                   height={250}
-                  {...getFieldProps("comment")}
+                  placeholder={placeholder}
+                  {...restOfCommentsProps}
                 />
                 <FormErrorMessage>{errors.comment}</FormErrorMessage>
               </FormControl>
