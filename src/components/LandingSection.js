@@ -2,7 +2,7 @@ import React from "react";
 import { Avatar, Heading, VStack } from "@chakra-ui/react";
 import FullScreenSection from "./FullScreenSection";
 import myHead from "../images/me-head.png";
-const greeting = "Hello, I am Pete!";
+const greeting = "Hello, I am Amir!";
 const bio1 = "A frontend developer";
 const bio2 = "specialised in React";
 
