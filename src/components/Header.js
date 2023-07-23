@@ -9,6 +9,9 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Box, HStack, useLatestRef } from "@chakra-ui/react";
 
+import DarkModeToggle from "react-dark-mode-toggle";
+import { useNightModeContext } from "../context/nightModeContext";
+
 const socials = [
   {
     icon: faEnvelope,
@@ -33,9 +36,9 @@ const socials = [
 ];
 
 const Header = () => {
-  const [firstRender, setfirstRender] = useState(true);
   const BoxRef = useRef(null);
-  const savingRef = useRef(null);
+  const { nightMode, toggleNightMode } = useNightModeContext();
+
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
@@ -81,36 +84,43 @@ const Header = () => {
         transitionProperty="transform"
         transitionDuration=".3s"
         transitionTimingFunction="ease-in-out"
-        backgroundColor="#18181b"
+        textAlign="center"
+        color={nightMode ? "black" : "white"}
+        backgroundColor={nightMode ? "whiteAlpha.800" : "#2C3440"}
       >
-        <Box color="white" maxWidth="1280px" margin="0 auto">
-          <HStack
-            px={16}
-            py={4}
-            justifyContent="space-between"
-            alignItems="center"
-          >
-            <nav>
-              {socials.map((s) => {
-                return (
-                  <a href={s.url} style={{ marginRight: "2rem" }} key={s.url}>
-                    <FontAwesomeIcon icon={s.icon} size="2x" />
-                  </a>
-                );
-              })}
-            </nav>
-            <nav>
-              <HStack spacing={8}>
-                <a href="#contactme-section" onClick={handleClick}>
-                  Contact Me
+        <HStack
+          px={16}
+          py={4}
+          justifyContent="space-between"
+          alignItems="center"
+        >
+          <nav>
+            {socials.map((s) => {
+              return (
+                <a href={s.url} style={{ marginRight: "2rem" }} key={s.url}>
+                  <FontAwesomeIcon icon={s.icon} size="2x" />
                 </a>
-                <a href="#projects-section" onClick={handleClick}>
-                  Projects
-                </a>
-              </HStack>
-            </nav>
-          </HStack>
-        </Box>
+              );
+            })}
+          </nav>
+
+          <nav>
+            <HStack spacing={8}>
+              <a href="#contactme-section" onClick={handleClick}>
+                Contact Me
+              </a>
+              <a href="#projects-section" onClick={handleClick}>
+                Projects
+              </a>
+              <DarkModeToggle
+                onChange={toggleNightMode}
+                checked={nightMode}
+                size={80}
+                justifySelf="end"
+              />
+            </HStack>
+          </nav>
+        </HStack>
       </Box>
     </nav>
   );

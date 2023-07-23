@@ -5,11 +5,11 @@ import Card from "./Card";
 
 const projects = [
   {
-    title: "React Space",
+    title: "Little Lemon Restaurant",
     description:
-      "Handy tool belt to create amazing AR components in a React app, with redux integration via middleware️",
+      "this is an static one page html css with grids and flexbox only . nothing more",
     getImageSrc: () => require("../images/photo1.jpg"),
-    url: "#",
+    url: "https://amir-haghighi.github.io/little-lemon-restaurant",
   },
   {
     title: "Doggos App",
@@ -42,6 +42,7 @@ const ProjectsSection = () => {
       alignItems="flex-start"
       spacing={8}
       id="projects-section"
+      height="auto"
     >
       <Heading as="h1">Featured Projects</Heading>
       <Box

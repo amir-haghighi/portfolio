@@ -1,22 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 html {
-  color:cadetblue;
+  color: cadetblue;
   background-color: #18181b;
+  color: #050716;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.input-white input ,  .input-white select ,.input-white textarea { 
-background-color:white ;
-color:#18181b ; 
+.input-white input,
+.input-white select,
+.input-white textarea {
+  background-color: white;
+  color: #18181b;
+  justify-content: baseline;
+}
+@font-face {
+  font-family: "Mynerve";
+  src: local("Mynerve"),
+    url("./fonts/Mynerve/Mynerve-Regular.ttf") format("truetype");
 }

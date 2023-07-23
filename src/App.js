@@ -5,18 +5,23 @@ import ProjectsSection from "./components/ProjectsSection";
 import ContactMeSection from "./components/ContactMeSection";
 import Footer from "./components/Footer";
 import { AlertProvider } from "./context/alertContext";
-import Alert from "./components/Alert";function App() {
+import Alert from "./components/Alert";
+import { NightModeProvider } from "./context/nightModeContext";
+function App() {
   return (
     <ChakraProvider>
       <AlertProvider>
-        <main>
-          <Header />
-          <LandingSection />
-          <ProjectsSection />
-          <ContactMeSection />
-          <Footer />
-          <Alert />
-        </main>
+        <NightModeProvider>
+          <main>
+            <Header />
+            <LandingSection />
+
+            <ProjectsSection />
+            <ContactMeSection />
+            <Footer />
+            <Alert />
+          </main>
+        </NightModeProvider>
       </AlertProvider>
     </ChakraProvider>
   );
