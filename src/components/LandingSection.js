@@ -2,8 +2,6 @@ import React from "react";
 import { Avatar, Heading, VStack } from "@chakra-ui/react";
 import FullScreenSection from "./FullScreenSection";
 import myHead from "../images/me.jpg";
-import classes from "../styles/LandingSection.module.css";
-import bg from "../images/code-late-night.jpg";
 const greeting = "Amir Haghighi";
 const bio0 = "Frontend developer";
 const bio1 = "specialised in React";
