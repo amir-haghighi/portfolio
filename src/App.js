@@ -2,7 +2,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { NightModeProvider } from "./context/nightModeContext";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ContactMePage from "./pages/ContactMePage";
@@ -16,7 +16,9 @@ function App() {
           <Navbar />
           <main>
             <Routes>
-              <Route path="/portfolio" element={<Index />} />
+              {" "}
+              <Route path="/" element={<Navigate to="/portfolio" />} />
+              <Route path="portfolio" element={<Index />} />
               <Route path="projects" element={<ProjectsPage />} />
               <Route path="contact" element={<ContactMePage />} />
             </Routes>

@@ -14,6 +14,7 @@ import classes from "../styles/Sidebar.module.css";
 import Hamburger from "hamburger-react";
 import { useNightModeContext } from "../context/nightModeContext";
 import { background } from "@chakra-ui/react";
+import useHideNav from "../hooks/useHideNav";
 const Sidebar = () => {
   const { nightMode } = useNightModeContext();
   const sideRef = useRef(null);
@@ -33,7 +34,7 @@ const Sidebar = () => {
       setisOpen((isOpen) => !isOpen);
     }
   };
-
+  useHideNav(buttonRef);
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
@@ -43,7 +44,6 @@ const Sidebar = () => {
       ) {
         setMenuClasses(`${classes.hide} ${classes.menu}`);
         setisOpen((isOpen) => !isOpen);
-        console.log("triggered");
       }
     };
     // Add event listener to the document object
@@ -64,21 +64,16 @@ const Sidebar = () => {
       }
     >
       <div ref={buttonRef} className={`${classes.burgerButton}`}>
-        <Hamburger
-          toggled={isOpen}
-          toggle={handleClickHamburger}
-          size={32}
-          style={{ border: "3px solid red" }}
-        />
+        <Hamburger toggled={isOpen} toggle={handleClickHamburger} size={32} />
       </div>
       <nav className={menuClasses} ref={sideRef}>
-        <Link className="menu-item" to="/portfolio">
+        <Link className="menu-item" to="portfolio">
           Home
         </Link>
-        <Link className="menu-item" to="/contact">
+        <Link className="menu-item" to="contact">
           Contact Me
         </Link>
-        <Link className="menu-item" to="/projects">
+        <Link className="menu-item" to="projects">
           Projects
         </Link>
         {socials.map((s) => {
