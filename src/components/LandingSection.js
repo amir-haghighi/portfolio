@@ -13,7 +13,7 @@ const LandingSection = () => (
   <FullScreenSection
     justifyContent="center"
     alignItems="center"
-    isDarkBackground={false}
+    // isDarkBackground={false}
     backgroundSize="cover"
   >
     <Avatar src={myHead} size="2xl" />

@@ -12,7 +12,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import React from "react";
 
-const Card = ({ title, description, imageSrc, url }) => {
+const Card = ({ title, description, imageSrc, url, ...otherProps }) => {
   // Implement the UI for the Card component according to the instructions.
   // You should be able to implement the component with the elements imported above.
   // Feel free to import other UI components from Chakra UI if you wish to.
@@ -25,13 +25,16 @@ const Card = ({ title, description, imageSrc, url }) => {
       color="black"
       borderRadius="10px"
       pb={3}
+      width="80vw"
+      {...otherProps}
     >
       <Image
         objectFit="cover"
         src={imageSrc}
         alt={title}
         borderRadius="10px 10px 0 0 "
-        maxHeight="60%"
+        height="60vh"
+        maxHeight="800px"
         width="100%"
         borderBottom="2px solid black"
       />

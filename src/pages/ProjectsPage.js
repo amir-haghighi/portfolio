@@ -1,7 +1,7 @@
 import React from "react";
-import FullScreenSection from "./FullScreenSection";
+import FullScreenSection from "../components/FullScreenSection";
 import { Box, Heading } from "@chakra-ui/react";
-import Card from "./Card";
+import Card from "../components/Card";
 
 const projects = [
   {
@@ -33,10 +33,9 @@ const projects = [
   },
 ];
 
-const ProjectsSection = () => {
+const ProjectsPage = () => {
   return (
     <FullScreenSection
-      backgroundColor="#14532d"
       isDarkBackground
       p={8}
       alignItems="flex-start"
@@ -46,13 +45,15 @@ const ProjectsSection = () => {
     >
       <Heading as="h1">Featured Projects</Heading>
       <Box
-        display="grid"
-        gridTemplateColumns="repeat(2,minmax(0,1fr))"
-        gridGap={8}
+        display="flex"
+        justifyContent="space-around"
+        gap="2rem"
+        flexWrap="wrap"
       >
         {projects.map((project) => {
           return (
             <Card
+              maxWidth="920px"
               url={project.url}
               key={project.title}
               title={project.title}
@@ -66,4 +67,4 @@ const ProjectsSection = () => {
   );
 };
 
-export default ProjectsSection;
+export default ProjectsPage;

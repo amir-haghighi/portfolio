@@ -1,0 +1,32 @@
+@media (max-width: 1100px) {
+  .navItems > * {
+    display: none;
+  }
+}
+.navItems > * {
+  padding: 1rem 1.5rem;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: "center";
+  font-size: large;
+}
+.nav > * {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-right: 1rem;
+}
+.outerBox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  transition-property: transform;
+  transition-duration: ".3s";
+  transition-timing-function: "ease-in-out";
+  text-align: "center";
+  height: 70px;
+}

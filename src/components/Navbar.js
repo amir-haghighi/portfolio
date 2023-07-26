@@ -7,12 +7,14 @@ import {
   faMedium,
   faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
-import { Box, HStack, useLatestRef } from "@chakra-ui/react";
-
+import { Box, HStack } from "@chakra-ui/react";
 import DarkModeToggle from "react-dark-mode-toggle";
 import { useNightModeContext } from "../context/nightModeContext";
+import { Link } from "react-router-dom";
+import Sidebar from "./Sidebar";
+import classes from "../styles/navbar.module.css";
 
-const socials = [
+export const socials = [
   {
     icon: faEnvelope,
     url: "mailto: hagh73h@gmail.com",
@@ -35,20 +37,21 @@ const socials = [
   },
 ];
 
-const Header = () => {
+const Navbar = () => {
+  const [isSideOpen, setIsSideOpen] = useState(false);
   const BoxRef = useRef(null);
   const { nightMode, toggleNightMode } = useNightModeContext();
 
-  const handleClick = (anchor) => () => {
-    const id = `${anchor}-section`;
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
+  // const handleClick = (anchor) => () => {
+  //   const id = `${anchor}-section`;
+  //   const element = document.getElementById(id);
+  //   if (element) {
+  //     element.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "start",
+  //     });
+  //   }
+  // };
   useLayoutEffect(() => {
     let prevScrollPos = window.scrollY;
 
@@ -72,57 +75,46 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  });
   return (
-    <nav>
+    <header>
+      <Sidebar />
       <Box
-        position="fixed"
-        top={0}
-        left={0}
-        right={0}
+        className={classes.outerBox}
         ref={BoxRef}
-        transitionProperty="transform"
-        transitionDuration=".3s"
-        transitionTimingFunction="ease-in-out"
-        textAlign="center"
-        color={nightMode ? "black" : "white"}
-        backgroundColor={nightMode ? "whiteAlpha.800" : "#2C3440"}
+        style={
+          nightMode
+            ? { color: "black", backgroundColor: "lightgray" }
+            : { color: "white", backgroundColor: "#2C3440" }
+        }
       >
-        <HStack
-          px={16}
-          py={4}
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          <nav>
+        <div className={classes.nav}>
+          <nav className={classes.navItems}>
             {socials.map((s) => {
               return (
-                <a href={s.url} style={{ marginRight: "2rem" }} key={s.url}>
+                <a href={s.url} key={s.url} target="_blank">
                   <FontAwesomeIcon icon={s.icon} size="2x" />
                 </a>
               );
             })}
           </nav>
-
-          <nav>
-            <HStack spacing={8}>
-              <a href="#contactme-section" onClick={handleClick}>
-                Contact Me
-              </a>
-              <a href="#projects-section" onClick={handleClick}>
-                Projects
-              </a>
+          <nav className={classes.navItems}>
+            <Link to="/portfolio">Home</Link>
+            <Link to="contact">Contact Me</Link>
+            <Link to="projects">Projects</Link>
+            <div style={{ display: "block" }}>
               <DarkModeToggle
                 onChange={toggleNightMode}
                 checked={nightMode}
                 size={80}
                 justifySelf="end"
               />
-            </HStack>
+            </div>
           </nav>
-        </HStack>
+        </div>
       </Box>
-    </nav>
+      <div style={{ marginBottom: "65px" }} />{" "}
+    </header>
   );
 };
-export default Header;
+export default Navbar;

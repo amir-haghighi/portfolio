@@ -8,7 +8,7 @@ import { useNightModeContext } from "../context/nightModeContext";
 const FullScreenSection = ({ children, isDarkBackground, ...boxProps }) => {
   const { nightMode } = useNightModeContext();
   const darkMode = { color: "ivory", backgroundColor: "#050716" };
-  const lightMode = { color: "black", backgroundColor: "lightgrey" };
+  const lightMode = { color: "black", backgroundColor: "gray.300" };
 
   return (
     <VStack

@@ -13,14 +13,13 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import * as Yup from "yup";
-import FullScreenSection from "./FullScreenSection";
+import FullScreenSection from "../components/FullScreenSection";
 import useSubmit from "../hooks/useSubmit";
-import { useAlertContext } from "../context/alertContext";
-import Alert from "./Alert";
+import { AlertProvider, useAlertContext } from "../context/alertContext";
+import Alert from "../components/Alert";
 
-const LandingSection = () => {
+const ContactMePage = () => {
   const formRef = useRef(null);
-  const buttonRef = useRef(null);
   const { isLoading, response, submit } = useSubmit();
   const { onOpen } = useAlertContext();
   const { values, errors, touched, getFieldProps, handleSubmit, resetForm } =
@@ -46,31 +45,24 @@ const LandingSection = () => {
   // Show an alert when the form is submitted successfully
   useEffect(() => {
     if (response) {
-      onOpen(response.type, response.message);
+      //onOpen(response.type, response.message);
       // Reset the form if the response is successful
       if (response.type === "success") resetForm();
     }
   }, [response]);
   let { value: placeholder, ...restOfCommentsProps } = getFieldProps("comment");
   return (
-    <FullScreenSection
-      isDarkBackground
-      backgroundColor="#512DA8"
-      py={16}
-      spacing={8}
-    >
-      <Alert />
-
-      <VStack w="1024px" p={32} alignItems="flex-start" id="contactme-section">
+    <FullScreenSection isDarkBackground spacing={8}>
+      <VStack w="100%" p={24} alignItems="flex-start" id="contactme-section">
         <Heading as="h1">Contact me</Heading>
-        <Box p={6} rounded="md" w="100%">
+        <Box rounded="md" w="100%">
           <form
             ref={formRef}
             onSubmit={(e) => {
               e.preventDefault();
               handleSubmit();
             }}
-            className="input-white "
+            className="input-white"
           >
             <VStack spacing={4}>
               <FormControl isInvalid={touched.firstName && errors.firstName}>
@@ -112,7 +104,7 @@ const LandingSection = () => {
                 <Textarea
                   id="comment"
                   name="comment"
-                  height={250}
+                  height={150}
                   placeholder={placeholder}
                   {...restOfCommentsProps}
                 />
@@ -130,8 +122,9 @@ const LandingSection = () => {
           </form>
         </Box>
       </VStack>
+      <Alert />
     </FullScreenSection>
   );
 };
 
-export default LandingSection;
+export default ContactMePage;

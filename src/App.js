@@ -1,28 +1,29 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import Header from "./components/Header";
-import LandingSection from "./components/LandingSection";
-import ProjectsSection from "./components/ProjectsSection";
-import ContactMeSection from "./components/ContactMeSection";
+import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { AlertProvider } from "./context/alertContext";
-import Alert from "./components/Alert";
 import { NightModeProvider } from "./context/nightModeContext";
+import { Routes, Route } from "react-router-dom";
+import Index from "./pages/HomePage";
+import ProjectsPage from "./pages/ProjectsPage";
+import ContactMePage from "./pages/ContactMePage";
+import { AlertProvider } from "./context/alertContext";
+
 function App() {
   return (
     <ChakraProvider>
-      <AlertProvider>
-        <NightModeProvider>
+      <NightModeProvider>
+        <AlertProvider>
+          <Navbar />
           <main>
-            <Header />
-            <LandingSection />
-
-            <ProjectsSection />
-            <ContactMeSection />
-            <Footer />
-            <Alert />
+            <Routes>
+              <Route path="/portfolio" element={<Index />} />
+              <Route path="projects" element={<ProjectsPage />} />
+              <Route path="contact" element={<ContactMePage />} />
+            </Routes>
           </main>
-        </NightModeProvider>
-      </AlertProvider>
+          <Footer />
+        </AlertProvider>
+      </NightModeProvider>
     </ChakraProvider>
   );
 }

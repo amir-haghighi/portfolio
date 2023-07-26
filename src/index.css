@@ -35,3 +35,7 @@ code {
   src: local("Mynerve"),
     url("./fonts/Mynerve/Mynerve-Regular.ttf") format("truetype");
 }
+#page-wrap {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
