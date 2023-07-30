@@ -37,6 +37,12 @@ export const socials = [
     url: "https://stackoverflow.com/users/5578365/amir-haghighi",
   },
 ];
+export const navItems = [
+  { name: "home", to: "/" },
+  { name: "Contact Me", to: "contact" },
+  { name: "Projects", to: "projects" },
+  { name: "About Me", to: "about" },
+];
 
 const Navbar = () => {
   const { nav } = useNightModeContext();
@@ -69,10 +75,13 @@ const Navbar = () => {
             })}
           </nav>
           <nav className={classes.navItems}>
-            <Link to="/">Home</Link>
-            <Link to="contact">Contact Me</Link>
-            <Link to="projects">Projects</Link>
-            <Link to="about">About Me</Link>
+            {navItems.map((item, i) => {
+              return (
+                <Link to={item.to} key={item.to}>
+                  {item.name}
+                </Link>
+              );
+            })}
             <div style={{ display: "block" }}>
               <DarkModeToggle
                 onChange={toggleNightMode}

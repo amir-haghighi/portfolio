@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { socials } from "./Navbar";
+import { navItems, socials } from "./Navbar";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -15,12 +15,14 @@ import Hamburger from "hamburger-react";
 import { useNightModeContext } from "../context/nightModeContext";
 import { background } from "@chakra-ui/react";
 import useHideNav from "../hooks/useHideNav";
+import useSidebarClose from "../hooks/useSidebarClose";
 const Sidebar = () => {
   const refs = useRef([]);
   const { nav } = useNightModeContext();
   const sideRef = useRef(null);
   const buttonRef = useRef(null);
-  const [isOpen, setisOpen] = useState(false);
+  const { isOpen, setisOpen } = useSidebarClose(sideRef, buttonRef);
+  useHideNav(buttonRef);
   let menuClasses = "";
   if (isOpen) {
     menuClasses = `${classes.isOpen} ${classes.menu}`;
@@ -34,25 +36,7 @@ const Sidebar = () => {
       setisOpen((isOpen) => !isOpen);
     }
   };
-  useHideNav(buttonRef);
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (
-        !sideRef.current.contains(e.target) &&
-        !buttonRef.current.contains(e.target) &&
-        isOpen
-      ) {
-        setisOpen((isOpen) => !isOpen);
-      }
-    };
-    // Add event listener to the document object
-    document.addEventListener("mousedown", handleClickOutside);
 
-    // Remove event listener when the component unmounts
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  });
   return (
     <div className={classes.sidebar} style={nav}>
       <div ref={buttonRef} className={`${classes.burgerButton}`}>
@@ -65,20 +49,11 @@ const Sidebar = () => {
           setisOpen(false);
         }}
       >
-        <Link className="menu-item" to="/">
-          Home
-        </Link>
-        <Link className="menu-item" to="contact">
-          Contact Me
-        </Link>
-        <Link className="menu-item" to="projects">
-          Projects
-        </Link>
-        {socials.map((s, i) => {
+        {navItems.map((item, i) => {
           return (
-            <a href={s.url} key={s.url} target="_blank">
-              <FontAwesomeIcon icon={s.icon} size="2x" />
-            </a>
+            <Link className="menu-item" to={item.to} key={item.to}>
+              {item.name}
+            </Link>
           );
         })}
       </nav>

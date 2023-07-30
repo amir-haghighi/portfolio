@@ -3,13 +3,17 @@
     display: none;
   }
 }
+.navItems {
+  align-items: center;
+}
 .navItems > * {
+  font-size: 1.3rem;
   padding: 1rem 1.5rem;
 }
 .nav {
   display: flex;
   justify-content: space-between;
-  align-items: "center";
+  align-items: center;
   font-size: large;
 }
 .nav > * {

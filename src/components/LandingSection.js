@@ -2,6 +2,9 @@ import React from "react";
 import { Avatar, Heading, VStack } from "@chakra-ui/react";
 import FullScreenSection from "./FullScreenSection";
 import myHead from "../images/me.jpg";
+import { socials } from "./Navbar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classes from "../styles/LandingSection.module.css";
 const greeting = "Amir Haghighi";
 const bio0 = "Frontend developer";
 const bio1 = "specialised in React";
@@ -33,6 +36,16 @@ const LandingSection = () => (
     {/* <h3 Aas="h3" size="lg" className={classes.About}>
       About ME
     </h3> */}
+
+    <div className={classes.socials}>
+      {socials.map((s, i) => {
+        return (
+          <a href={s.url} key={s.url} target="_blank">
+            <FontAwesomeIcon icon={s.icon} size="4x" />
+          </a>
+        );
+      })}
+    </div>
   </FullScreenSection>
 );
 

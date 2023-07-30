@@ -1,3 +1,18 @@
 .About {
   font-family: "Mynerve", cursive;
 }
+.socials {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.socials > * {
+  padding: 2rem;
+  padding-top: 3rem;
+}
+
+@media (min-width: 920px) {
+  .socials {
+    display: none;
+  }
+}
