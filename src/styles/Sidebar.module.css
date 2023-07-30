@@ -18,7 +18,7 @@
 }
 
 .menu > * {
-  height: 11vh;
+  max-height: 11vh;
   padding: 2rem;
   border-radius: 10px;
   border-bottom: 1px solid black;
