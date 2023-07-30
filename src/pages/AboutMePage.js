@@ -74,7 +74,7 @@ const AboutMePage = () => {
           })}
         </div>
       </div>
-      <div className={classes.education}>three</div>
+
     </div>
   );
 };
