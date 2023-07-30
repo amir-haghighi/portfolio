@@ -7,10 +7,10 @@
 }
 .menu {
   position: fixed;
-  top: 65px;
+  top: 70px;
   display: flex;
   flex-direction: column;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
   height: 100%;
   background-color: inherit;
   color: inherit;
@@ -26,11 +26,11 @@
   background-color: inherit;
   color: inherit;
 }
-.show .show {
-  left: 0;
+.show {
+  transform: translateX(0);
 }
 .hide {
-  left: -200px;
+  transform: translateX(-200px);
 }
 .sidebar {
   display: none;

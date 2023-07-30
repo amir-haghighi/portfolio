@@ -16,21 +16,21 @@ import { useNightModeContext } from "../context/nightModeContext";
 import { background } from "@chakra-ui/react";
 import useHideNav from "../hooks/useHideNav";
 const Sidebar = () => {
-  const { nightMode } = useNightModeContext();
+  const refs = useRef([]);
+  const { nav } = useNightModeContext();
   const sideRef = useRef(null);
   const buttonRef = useRef(null);
   const [isOpen, setisOpen] = useState(false);
-  const [menuClasses, setMenuClasses] = useState(
-    `${classes.hide} ${classes.menu}`
-  );
-
+  let menuClasses = "";
+  if (isOpen) {
+    menuClasses = `${classes.isOpen} ${classes.menu}`;
+  } else {
+    menuClasses = `${classes.hide} ${classes.menu}`;
+  }
   const handleClickHamburger = () => {
-    console.log("clicked");
     if (!isOpen) {
-      setMenuClasses(`${classes.isOpen} ${classes.menu}`);
       setisOpen((isOpen) => !isOpen);
     } else {
-      setMenuClasses(`${classes.hide} ${classes.menu}`);
       setisOpen((isOpen) => !isOpen);
     }
   };
@@ -42,7 +42,6 @@ const Sidebar = () => {
         !buttonRef.current.contains(e.target) &&
         isOpen
       ) {
-        setMenuClasses(`${classes.hide} ${classes.menu}`);
         setisOpen((isOpen) => !isOpen);
       }
     };
@@ -55,19 +54,18 @@ const Sidebar = () => {
     };
   });
   return (
-    <div
-      className={classes.sidebar}
-      style={
-        nightMode
-          ? { color: "black", backgroundColor: "lightgray" }
-          : { color: "white", backgroundColor: "#2C3440" }
-      }
-    >
+    <div className={classes.sidebar} style={nav}>
       <div ref={buttonRef} className={`${classes.burgerButton}`}>
         <Hamburger toggled={isOpen} toggle={handleClickHamburger} size={32} />
       </div>
-      <nav className={menuClasses} ref={sideRef}>
-        <Link className="menu-item" to="portfolio">
+      <nav
+        className={menuClasses}
+        ref={sideRef}
+        onClick={() => {
+          setisOpen(false);
+        }}
+      >
+        <Link className="menu-item" to="/">
           Home
         </Link>
         <Link className="menu-item" to="contact">
@@ -76,7 +74,7 @@ const Sidebar = () => {
         <Link className="menu-item" to="projects">
           Projects
         </Link>
-        {socials.map((s) => {
+        {socials.map((s, i) => {
           return (
             <a href={s.url} key={s.url} target="_blank">
               <FontAwesomeIcon icon={s.icon} size="2x" />

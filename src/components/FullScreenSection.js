@@ -1,20 +1,14 @@
 import * as React from "react";
-import { VStack } from "@chakra-ui/react";
+import { VStack, background } from "@chakra-ui/react";
 import { useNightModeContext } from "../context/nightModeContext";
 
 /**
  * Illustrates the use of children prop and spread operator
  */
 const FullScreenSection = ({ children, isDarkBackground, ...boxProps }) => {
-  const { nightMode } = useNightModeContext();
-  const darkMode = { color: "ivory", backgroundColor: "#050716" };
-  const lightMode = { color: "black", backgroundColor: "gray.300" };
-
+  const { nightMode, color, backgroundColor } = useNightModeContext();
   return (
-    <VStack
-      backgroundColor={boxProps.backgroundColor}
-      {...(nightMode ? { ...darkMode } : { ...lightMode })}
-    >
+    <VStack color={color} backgroundColor={backgroundColor}>
       <VStack width="100%" height="100vh" {...boxProps}>
         {children}
       </VStack>

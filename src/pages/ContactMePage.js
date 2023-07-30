@@ -45,7 +45,7 @@ const ContactMePage = () => {
   // Show an alert when the form is submitted successfully
   useEffect(() => {
     if (response) {
-      //onOpen(response.type, response.message);
+      onOpen(response.type, response.message);
       // Reset the form if the response is successful
       if (response.type === "success") resetForm();
     }

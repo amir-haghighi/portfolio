@@ -7,6 +7,7 @@ import Index from "./pages/HomePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ContactMePage from "./pages/ContactMePage";
 import { AlertProvider } from "./context/alertContext";
+import AboutMePage from "./pages/AboutMePage";
 
 function App() {
   return (
@@ -16,11 +17,10 @@ function App() {
           <Navbar />
           <main>
             <Routes>
-              {" "}
-              <Route path="/" element={<Navigate to="/portfolio" />} />
-              <Route path="portfolio" element={<Index />} />
+              <Route path="/" element={<Index />} />
               <Route path="projects" element={<ProjectsPage />} />
               <Route path="contact" element={<ContactMePage />} />
+              <Route path="about" element={<AboutMePage />} />
             </Routes>
           </main>
           <Footer />

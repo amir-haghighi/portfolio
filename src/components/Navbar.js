@@ -39,7 +39,7 @@ export const socials = [
 ];
 
 const Navbar = () => {
-  const [isSideOpen, setIsSideOpen] = useState(false);
+  const { nav } = useNightModeContext();
   const BoxRef = useRef(null);
   const { nightMode, toggleNightMode } = useNightModeContext();
   useHideNav(BoxRef);
@@ -57,15 +57,7 @@ const Navbar = () => {
   return (
     <header>
       <Sidebar />
-      <Box
-        className={classes.outerBox}
-        ref={BoxRef}
-        style={
-          nightMode
-            ? { color: "black", backgroundColor: "lightgray" }
-            : { color: "white", backgroundColor: "#2C3440" }
-        }
-      >
+      <Box className={classes.outerBox} ref={BoxRef} style={nav}>
         <div className={classes.nav}>
           <nav className={classes.navItems}>
             {socials.map((s) => {
@@ -77,9 +69,10 @@ const Navbar = () => {
             })}
           </nav>
           <nav className={classes.navItems}>
-            <Link to="/portfolio">Home</Link>
+            <Link to="/">Home</Link>
             <Link to="contact">Contact Me</Link>
             <Link to="projects">Projects</Link>
+            <Link to="about">About Me</Link>
             <div style={{ display: "block" }}>
               <DarkModeToggle
                 onChange={toggleNightMode}
@@ -91,7 +84,7 @@ const Navbar = () => {
           </nav>
         </div>
       </Box>
-      <div style={{ marginBottom: "65px" }} />{" "}
+      <div style={{ marginBottom: "70px" }} />{" "}
     </header>
   );
 };
