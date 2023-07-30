@@ -28,19 +28,20 @@ const ContactMePage = () => {
         firstName: "",
         email: "",
         type: "hireMe" | "openSource" | "other",
-        comment: "Message me",
+        comment: "",
       },
-      onSubmit: () => {
-        submit(values, formRef);
-      },
+
       validationSchema: Yup.object({
         firstName: Yup.string().required("Required"),
-        email: Yup.string().required().email("Invalid email address"),
+        email: Yup.string().required("Required").email("Invalid email address"),
         type: Yup.string().optional(),
         comment: Yup.string()
           .required("Required")
-          .min(5, "Must be at least 5 characters"),
+          .min(5, "must be at least 5 letters"),
       }),
+      onSubmit: () => {
+        submit(values, formRef);
+      },
     });
   // Show an alert when the form is submitted successfully
   useEffect(() => {
@@ -50,9 +51,8 @@ const ContactMePage = () => {
       if (response.type === "success") resetForm();
     }
   }, [response]);
-  let { value: placeholder, ...restOfCommentsProps } = getFieldProps("comment");
   return (
-    <FullScreenSection isDarkBackground spacing={8}>
+    <FullScreenSection isDarkBackground spacing={8} height="auto  ">
       <VStack w="100%" p={24} alignItems="flex-start" id="contactme-section">
         <Heading as="h1">Contact me</Heading>
         <Box rounded="md" w="100%">
@@ -105,8 +105,8 @@ const ContactMePage = () => {
                   id="comment"
                   name="comment"
                   height={150}
-                  placeholder={placeholder}
-                  {...restOfCommentsProps}
+                  placeholder="Message me"
+                  {...getFieldProps("email")}
                 />
                 <FormErrorMessage>{errors.comment}</FormErrorMessage>
               </FormControl>
@@ -116,27 +116,28 @@ const ContactMePage = () => {
                 colorScheme="purple"
                 width="full"
                 isLoading={isLoading}
+                onClick={() => console.log(errors)}
               >
                 Submit
               </Button>
             </VStack>
-            <Heading as="h3" size="lg" fontWeight={"normal"} mt={10}>
-              my phone number : +989152511664
-            </Heading>
-            <Heading as="h3" size="lg" fontWeight={"normal"} mt={10} mb={2}>
-              my address : Tehran Province, Tehran, Varnoos Alley, Blvd,
-              Keshavarz, Iran.
-            </Heading>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d340.52507174421606!2d51.39970737375017!3d35.71050584193878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e01178d9c009d%3A0xd8a3d6d6704607b2!2sSaharkhiz%20Dormitory!5e0!3m2!1sen!2s!4v1690678206914!5m2!1sen!2s"
-              width="600"
-              height="450"
-              style={{ border: "0" }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
           </form>
+          <Heading as="h3" size="lg" fontWeight={"normal"} mt={10}>
+            my phone number : +989152511664
+          </Heading>
+          <Heading as="h3" size="lg" fontWeight={"normal"} mt={10} mb={2}>
+            my address : Tehran Province, Tehran, Varnoos Alley, Blvd,
+            Keshavarz, Iran.
+          </Heading>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d340.52507174421606!2d51.39970737375017!3d35.71050584193878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e01178d9c009d%3A0xd8a3d6d6704607b2!2sSaharkhiz%20Dormitory!5e0!3m2!1sen!2s!4v1690678206914!5m2!1sen!2s"
+            width="300"
+            height="200"
+            style={{ border: "0" }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </Box>
       </VStack>
 

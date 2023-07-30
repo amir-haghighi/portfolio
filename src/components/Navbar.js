@@ -84,7 +84,7 @@ const Navbar = () => {
           </nav>
         </div>
       </Box>
-      <div style={{ marginBottom: "70px" }} />{" "}
+      <div style={{ marginBottom: "0px" }} />{" "}
     </header>
   );
 };
