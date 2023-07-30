@@ -10,7 +10,7 @@ import {
 import React from "react";
 import { Bar } from "react-chartjs-2";
 ChartJs.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
-export default function Chart() {
+export default function Chart(props) {
   const data = {
     labels: ["HTML", "css", "JavaScript", "React.js", "Figma"],
     datasets: [
@@ -48,6 +48,7 @@ export default function Chart() {
           drawBorder: false,
         },
         ticks: {
+          color: props.color ? props.color : null,
           font: {
             size: 20,
           },
@@ -57,6 +58,7 @@ export default function Chart() {
         display: true,
         max: 8,
         ticks: {
+          color: props.color ? props.color : null,
           font: {
             size: 20,
           },

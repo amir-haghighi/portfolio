@@ -79,10 +79,14 @@
 }
 
 .certificates {
+  margin-right: 1rem;
+  margin-left: 1rem;
+  border-radius: 10px;
   grid-area: bottom;
+  padding-bottom: 2rem;
+  background-color: white;
 }
 .certificates > * {
-  background-color: white;
 }
 .img {
   display: flex;

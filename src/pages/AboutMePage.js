@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import FullScreenSection from "../components/FullScreenSection";
 import classes from "../styles/AboutMePage.module.css";
 import { useNightModeContext } from "../context/nightModeContext";
 import { Heading } from "@chakra-ui/react";
@@ -8,14 +7,20 @@ import { faQuoteLeft } from "@fortawesome/free-solid-svg-icons";
 import Chart from "../components/Chart";
 import { certificates } from "../assets/certificates";
 const AboutMePage = () => {
-  const { color, backgroundColor } = useNightModeContext();
+  const { color, backgroundColor, nightMode } = useNightModeContext();
   return (
     <div
       className={classes.fullscreen}
-      style={{ color: color, backgroundColor: backgroundColor }}
+      style={{
+        color: color,
+        backgroundColor: backgroundColor,
+      }}
     >
       <div className={classes.left}>
-        <div className={classes.summary}>
+        <div
+          className={classes.summary}
+          style={nightMode ? { backgroundColor: "rgba(85,95,80,0.4)" } : null}
+        >
           <Heading as="h1" size="2xl" p="1rem" textAlign="center">
             Amir Haghighi
           </Heading>
@@ -48,7 +53,10 @@ const AboutMePage = () => {
             </tbody>
           </table>
         </div>
-        <div className={classes.bio}>
+        <div
+          className={classes.bio}
+          style={nightMode ? { backgroundColor: "rgba(85,95,80,0.4)" } : null}
+        >
           <p>
             <FontAwesomeIcon icon={faQuoteLeft} /> "Front end developer who
             writes clean , elegent and efficient code. "
@@ -56,11 +64,20 @@ const AboutMePage = () => {
         </div>
       </div>
 
-      <div className={classes.skills}>
-        <Chart style={{ border: "3px solid red" }} />
+      <div
+        className={classes.skills}
+        style={nightMode ? { backgroundColor: "rgba(185,190,180,.4)" } : null}
+      >
+        <Chart
+          style={{ border: "3px solid red" }}
+          color={nightMode ? "white" : null}
+        />
       </div>
 
-      <div className={classes.certificates}>
+      <div
+        className={classes.certificates}
+        style={nightMode ? { backgroundColor: "rgba(85,95,80,.4)" } : null}
+      >
         <Heading as="h2" size={"lg"} p="2rem">
           Certificates
         </Heading>
@@ -74,7 +91,6 @@ const AboutMePage = () => {
           })}
         </div>
       </div>
-
     </div>
   );
 };
