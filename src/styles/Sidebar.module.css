@@ -11,13 +11,14 @@
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease-in-out;
-  height: 100%;
+  height: 100vh;
   background-color: inherit;
   color: inherit;
   background-color: inherit;
 }
 
 .menu > * {
+  height: 11vh;
   padding: 2rem;
   border-radius: 10px;
   border-bottom: 1px solid black;
