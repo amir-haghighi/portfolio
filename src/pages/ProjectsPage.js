@@ -37,7 +37,8 @@ const ProjectsPage = () => {
   return (
     <FullScreenSection
       isDarkBackground
-      p={24}
+      pt={24}
+      pl={8}
       alignItems="flex-start"
       spacing={8}
       id="projects-section"
