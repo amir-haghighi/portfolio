@@ -39,6 +39,7 @@ const ProjectsPage = () => {
       isDarkBackground
       m="auto"
       pt={24}
+      pb={4}
       alignItems="flex-start"
       spacing={8}
       id="projects-section"
