@@ -37,14 +37,16 @@ const ProjectsPage = () => {
   return (
     <FullScreenSection
       isDarkBackground
+      m="auto"
       pt={24}
-      pl={8}
       alignItems="flex-start"
       spacing={8}
       id="projects-section"
       height="auto"
     >
-      <Heading as="h1">Featured Projects</Heading>
+      <Heading as="h1" pl={10}>
+        Featured Projects
+      </Heading>
       <Box
         display="flex"
         justifyContent="space-around"
