@@ -12,33 +12,33 @@ const useSubmit = () => {
 
   const submit = async (data, formRef) => {
     setLoading(true);
-    try {
-      emailjs
-        .sendForm(
-          "service_6ltaoq9",
-          "template_ip42lrt",
-          formRef.current,
-          "U3kvLHAo1OPgqqaVi"
-        )
-        .then(
-          (result) => {
-            setResponse({
-              type: "success",
-              message: `Thanks for your submission ${data.firstName}, we will get back to you shortly!`,
-            });
-            console.log(result.text);
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
-    } catch (error) {
-      setResponse({
-        type: "error",
-        message: "Something went wrong, please try again later!",
+    emailjs
+      .sendForm(
+        "service_6ltaoq9",
+        "template_ip42lrt",
+        formRef.current,
+        "U3kvLHAo1OPgqqaVi"
+      )
+      .then(
+        (result) => {
+          setResponse({
+            type: "success",
+            message: `Thanks for your submission ${data.firstName}, we will get back to you shortly!`,
+          });
+          console.log(result.text);
+          setLoading(false);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      )
+      .catch((error) => {
+        setResponse({
+          type: "error",
+          message: "Something went wrong, please try again later!",
+        });
+        setLoading(false);
       });
-    }
-    setLoading(false);
   };
 
   return { isLoading, response, submit };

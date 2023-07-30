@@ -77,6 +77,7 @@ const ContactMePage = () => {
               <FormControl isInvalid={touched.email && errors.email}>
                 <FormLabel htmlFor="email">Email Address</FormLabel>
                 <Input
+                  onClick={() => console.log(errors)}
                   id="email"
                   name="email"
                   type="email"
@@ -116,7 +117,6 @@ const ContactMePage = () => {
                 colorScheme="purple"
                 width="full"
                 isLoading={isLoading}
-                onClick={() => console.log(errors)}
               >
                 Submit
               </Button>
