@@ -41,7 +41,7 @@ const LandingSection = () => (
       {socials.map((s, i) => {
         return (
           <a href={s.url} key={s.url} target="_blank">
-            <FontAwesomeIcon icon={s.icon} size="4x" />
+            <FontAwesomeIcon icon={s.icon} size="3x" />
           </a>
         );
       })}
