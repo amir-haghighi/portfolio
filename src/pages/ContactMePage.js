@@ -106,7 +106,7 @@ const ContactMePage = () => {
                   name="comment"
                   height={150}
                   placeholder="Message me"
-                  {...getFieldProps("email")}
+                  {...getFieldProps("comment")}
                 />
                 <FormErrorMessage>{errors.comment}</FormErrorMessage>
               </FormControl>
