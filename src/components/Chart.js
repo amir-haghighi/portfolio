@@ -29,13 +29,16 @@ export default function Chart(props) {
     8: "Jedi",
   };
   const options = {
-    maintainAspectRatio: true,
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       title: {
+        color: props.color ? props.color : null,
         display: true,
         text: "My Skills ",
         font: { size: 24 },
         padding: {
+          left: 0,
           top: 10,
           bottom: 30,
         },

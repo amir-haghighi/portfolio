@@ -68,10 +68,12 @@ const AboutMePage = () => {
         className={classes.skills}
         style={nightMode ? { backgroundColor: "rgba(185,190,180,.4)" } : null}
       >
-        <Chart
-          style={{ border: "3px solid red" }}
-          color={nightMode ? "white" : null}
-        />
+        <div style={{ height: "600px" }}>
+          <Chart
+            style={{ border: "3px solid red" }}
+            color={nightMode ? "white" : null}
+          />
+        </div>
       </div>
 
       <div
