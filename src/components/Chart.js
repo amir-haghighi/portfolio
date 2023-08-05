@@ -12,11 +12,27 @@ import { Bar } from "react-chartjs-2";
 ChartJs.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 export default function Chart(props) {
   const data = {
-    labels: ["HTML", "css", "JavaScript", "React.js", "Figma"],
+    labels: [
+      "HTML",
+      "css",
+      "JavaScript",
+      "React.js",
+      "Redux",
+      "TypeScript",
+      "Figma",
+    ],
     datasets: [
       {
-        data: [3, 3, 3, 4, 2],
-        backgroundColor: ["#5fb2a8", "#e1ae9e", "#dfae36", "#bc8e5b", "ca4544"],
+        data: [3, 3, 3, 4, 4, 4, 2],
+        backgroundColor: [
+          "#5fb2a8",
+          "#e1ae9e",
+          "#dfae36",
+          "#bc8e5b",
+          "ca4544",
+          "#2D3440",
+          "#D3D3D3",
+        ],
         borderWidth: 1,
       },
     ],
