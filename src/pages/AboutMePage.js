@@ -59,7 +59,7 @@ const AboutMePage = () => {
         >
           <p>
             <FontAwesomeIcon icon={faQuoteLeft} /> "Front end developer who
-            writes clean , elegent and efficient code. "
+            writes clean , elegant and efficient code. "
           </p>
         </div>
       </div>
